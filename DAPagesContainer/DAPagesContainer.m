@@ -116,8 +116,8 @@
 - (void)setSelectedIndex:(NSUInteger)selectedIndex animated:(BOOL)animated
 {
     NSAssert(selectedIndex < self.viewControllers.count, @"selectedIndex should belong within the range of the view controllers array");
-    UIButton *previosSelectdItem = self.topBar.itemViews[self.selectedIndex];
-    UIButton *nextSelectdItem = self.topBar.itemViews[selectedIndex];
+    UIButton *previousSelectedItem = self.topBar.itemViews[self.selectedIndex];
+    UIButton *nextSelectedItem = self.topBar.itemViews[selectedIndex];
     if (abs(self.selectedIndex - selectedIndex) <= 1) {
         [self.scrollView setContentOffset:CGPointMake(selectedIndex * self.scrollWidth, 0.) animated:animated];
         if (selectedIndex == _selectedIndex) {
@@ -126,8 +126,8 @@
         }
         [UIView animateWithDuration:(animated) ? 0.3 : 0. delay:0. options:UIViewAnimationOptionBeginFromCurrentState animations:^
          {
-             [previosSelectdItem setTitleColor:self.pageItemsTitleColor forState:UIControlStateNormal];
-             [nextSelectdItem setTitleColor:self.selectedPageItemTitleColor forState:UIControlStateNormal];
+             [previousSelectedItem setTitleColor:self.pageItemsTitleColor forState:UIControlStateNormal];
+             [nextSelectedItem setTitleColor:self.selectedPageItemTitleColor forState:UIControlStateNormal];
          } completion:nil];
     } else {
         // This means we should "jump" over at least one view controller
@@ -153,8 +153,8 @@
             self.pageIndicatorView.center = CGPointMake([self.topBar centerForSelectedItemAtIndex:selectedIndex].x,
                                                         [self pageIndicatorCenterY]);
             self.topBar.scrollView.contentOffset = [self.topBar contentOffsetForSelectedItemAtIndex:selectedIndex];
-            [previosSelectdItem setTitleColor:self.pageItemsTitleColor forState:UIControlStateNormal];
-            [nextSelectdItem setTitleColor:self.selectedPageItemTitleColor forState:UIControlStateNormal];
+            [previousSelectedItem setTitleColor:self.pageItemsTitleColor forState:UIControlStateNormal];
+            [nextSelectedItem setTitleColor:self.selectedPageItemTitleColor forState:UIControlStateNormal];
         } completion:^(BOOL finished) {
             for (NSUInteger i = 0; i < self.viewControllers.count; i++) {
                 UIViewController *viewController = self.viewControllers[i];
@@ -269,10 +269,8 @@
         }
         [(UIImageView *)self.pageIndicatorView setImage:pageIndicatorImage];
     } else {
-        if ([self.pageIndicatorView isKindOfClass:[UIImageView class]]) {
-            [self.pageIndicatorView removeFromSuperview];
-            self.pageIndicatorView = nil;
-        }
+        [self.pageIndicatorView removeFromSuperview];
+        self.pageIndicatorView = nil;
         [(DAPageIndicatorView *)self.pageIndicatorView setColor:self.topBarBackgroundColor];
     }
 }

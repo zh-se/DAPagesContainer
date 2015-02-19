@@ -29,30 +29,37 @@
     self.pagesContainer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.pagesContainer.view];
     [self.pagesContainer didMoveToParentViewController:self];
+
+    self.pagesContainer.topBarBackgroundColor = [UIColor whiteColor];
+    self.pagesContainer.pageItemsTitleColor = [UIColor lightGrayColor];
+    self.pagesContainer.selectedPageItemTitleColor = [UIColor redColor];
+    self.pagesContainer.pageIndicatorImage = nil;
+    self.pagesContainer.topBarItemLabelsFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:25];
+
     
     UIViewController *beaverViewController = [[UIViewController alloc] init];
     UIImageView *beaverImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"beaver.jpg"]];
     beaverImageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [beaverViewController.view addSubview:beaverImageView];
-    beaverViewController.title = @"BEAVER";
+    beaverViewController.title = @"Beaver";
     
     UIViewController *buckDeerViewController = [[UIViewController alloc] init];
     UIImageView *buckDeerImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"buckDeer.jpg"]];
     buckDeerImageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [buckDeerViewController.view addSubview:buckDeerImageView];
-    buckDeerViewController.title = @"BUCK DEER";
+    buckDeerViewController.title = @"Buck Deer";
     
     UIViewController *catViewController = [[UIViewController alloc] init];
     UIImageView *catImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cat.jpg"]];
     catImageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [catViewController.view addSubview:catImageView];
-    catViewController.title = @"CAT";
+    catViewController.title = @"Cat";
     
     UIViewController *lionViewController = [[UIViewController alloc] init];
     UIImageView *lionImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"lion.jpg"]];
     lionImageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [lionViewController.view addSubview:lionImageView];
-    lionViewController.title = @"REALLY CUTE LION";
+    lionViewController.title = @"Really Cute Lion";
 
     self.pagesContainer.viewControllers = @[beaverViewController, buckDeerViewController, catViewController, lionViewController];
 }
